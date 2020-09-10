@@ -2698,6 +2698,7 @@ input, select, textarea {
 
 			.carousel article p {
 				text-align: center;
+				width: 15em;
 			}
 
 /* Wide */
@@ -2724,6 +2725,10 @@ input, select, textarea {
 				.carousel article {
 					width: 18em;
 					margin: 0 1.25em 0 0;
+				}
+
+				.carousel article p{
+					width: 15em;
 				}
 
 	}
@@ -2811,6 +2816,10 @@ input, select, textarea {
 				.carousel article {
 					width: 18em;
 					margin: 0 1em 0 0;
+				}
+
+				.carousel article p{
+					width: 15em;
 				}
 
 	}
@@ -3040,6 +3049,10 @@ input, select, textarea {
 					.carousel article .image {
 						margin-bottom: 2em;
 					}
+
+				.carousel article p {
+					width: 10em;
+				}
 
 	}
 

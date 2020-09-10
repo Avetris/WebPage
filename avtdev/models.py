@@ -12,7 +12,7 @@ URL_TYPES = [
 ]
 
 def change_filename(instance, filename):
-    ext = filename.split('.')[-1]
+    ext = filename.split('.')[-1].lower()
     return 'developments/{}{}'.format(instance.name, '.'+ext)
 
 class Url(models.Model):
