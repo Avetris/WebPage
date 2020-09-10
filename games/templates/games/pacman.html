@@ -1,0 +1,21 @@
+<html>
+    {% load static %}
+    <head>
+		<link rel="stylesheet" href="{% static "games/pacman/css/index.css" %}">
+		<link rel="stylesheet" href="{% static "games/pacman/js/qunit/qunit-1.16.0.css" %}">
+	</head>
+	<body bgcolor="black">
+		<canvas id="canvas" width="600" height="600"></canvas>
+		<p><br>
+		<div id="qunit"></div>
+
+        <script>
+            var static_url = "{% static "games/pacman/" %}";
+        </script>
+		<script src="{% static "games/pacman/js/howler.js" %}"> </script>
+		<script src="{% static "games/pacman/js/jquery-2.2.4.min.js" %}"> </script>
+		<script src="{% static "games/pacman/js/sprite.js" %}"></script>
+		<script src="{% static "games/pacman/js/resources.js" %}"></script>
+		<script src="{% static "games/pacman/js/pacman.js" %}"></script>
+	</body>
+</html>

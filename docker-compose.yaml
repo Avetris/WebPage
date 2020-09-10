@@ -1,0 +1,44 @@
+version: '3.7'
+services:
+  mongodb:
+    container_name: "mongodb"
+    image: 'mongo:3.4.1'
+    ports:
+      - "27017:27017"
+    volumes:
+      - 'mongo:/data/db'
+    restart: always
+  web:
+    container_name: webpage
+    build: .
+    command: bash -c "python manage.py migrate && python manage.py collectstatic --clear --no-input && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - /home/ubuntu/media:/usr/src/app/media/
+      - static_volume:/usr/src/app/static/
+    environment:
+      - DJANGO_DEBUG=False
+    expose:
+      - 8000
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+    restart: always
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    volumes:
+      - /home/ubuntu/media:/usr/src/app/media/
+      - static_volume:/usr/src/app/static/
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/lib/letsencrypt:/var/lib/letsencrypt
+    ports:
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
+    depends_on:
+      - web
+    restart: always
+
+volumes:
+  mongo:
+  static_volume:

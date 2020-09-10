@@ -1,0 +1,69 @@
+{% load static %}
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <section class="col-6 col-12-narrower">
+                {% if submitted %}
+                    <p>Your message was submitted successfully. Thank you.</p>
+                {% else %}
+                    <h3 style="color:white">Get In Touch</h3>
+                    <form action="" method="post" id="send_email">
+                        {% csrf_token %}
+                        <div class="row gtr-50">
+                            <div class="col-6 col-12-mobilep">
+                                {{ form.name }}
+                                {{ form.name.errors }}
+                            </div>
+                            <div class="col-6 col-12-mobilep">
+                                {{ form.email }}
+                                {{ form.email.errors }}
+                            </div>
+                            <div class="col-12">
+                                {{ form.message }}
+                                {{ form.message.errors }}
+                            </div>
+                            <div class="col-6 col-12-mobilep">
+                                {{ form.captcha }}
+                                {{ form.captcha.errors }}
+                            </div>
+                            <div class="col-12">
+                                <ul class="actions">
+                                    <li><input type="submit" class="button alt" value="Send Message" /></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+
+                {% endif %}
+            </section>
+            <section class="col-3 col-6-narrower col-12-mobilep">
+                <h3 style="color:white">Contact</h3>
+                <dl class="alt">
+                    <dt>Email</dt>
+                    <dd><a href="mailto: {{ information.email }}">{{ information.email }}</a></dd>
+                </dl>
+            </section>
+        </div>
+    </div>
+    <!-- Icons -->
+    <ul class="icons">
+        {% for url in information.urls %}
+            <li>
+                <a target="_blank" href="{{ url.url }}" class="icon brands {{ url.htmlClass }}">
+                    <span class="label">{{ url.name }}</span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="copyright">
+         <ul class="menu">
+            <li>&copy; Untitled. All rights reserved.</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            <li><a href="{% url "avtdev:policy_privacy" %}">Privacy Policy </a></li>
+        </ul>
+    </div>
+</footer>
+
+{% if form.errors|length != 0 or submitted %}
+    <script>window.scrollTo(0,document.body.scrollHeight);</script>
+{% endif %}
