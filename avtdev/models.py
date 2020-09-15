@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from avtdev.storage import OverwriteStorage
 from django import forms
 from djongo import models
@@ -60,6 +62,10 @@ class Development(models.Model):
         null=True, blank=True
     )
     objects = models.DjongoManager()
+    date_creation = models.DateField(default=datetime.now())
+    class Meta:
+        ordering = ['-date_creation']
+
 
 class Info(models.Model):
     name = models.CharField(max_length=100, primary_key=True)
