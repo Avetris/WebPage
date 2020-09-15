@@ -49,7 +49,7 @@ class StringListField(forms.CharField):
 class Development(models.Model):
     name = models.CharField(max_length=100, primary_key=True)
     image = models.ImageField(upload_to=change_filename, storage=OverwriteStorage())
-    description = models.CharField(max_length=4000)
+    description = models.TextField(max_length=4000)
     is_application = models.BooleanField()
     platforms = PlatformField()
     languages = LanguageField()
@@ -63,12 +63,13 @@ class Development(models.Model):
 
 class Info(models.Model):
     name = models.CharField(max_length=100, primary_key=True)
-    description = models.CharField(max_length=4000)
+    description = models.TextField(max_length=4000)
     email = models.CharField(max_length=1000)
     urls = models.ArrayField(
         model_container=Url,
         null=True, blank=True
     )
+    privacy_policy = models.TextField(max_length=10000)
 
 class Message(models.Model):
     name = models.CharField(max_length=200)
