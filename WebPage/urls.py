@@ -14,13 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import path
 from django.conf.urls import include, url
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^captcha/', include('captcha.urls')),
     path('', include('avtdev.urls')),
-    path('', include('games.urls'))
+    path('', include('games.urls')),
+    path("app-ads.txt", RedirectView.as_view(url=staticfiles_storage.url("app-ads.txt")))
    # url(r'^$', generic.RedirectView.as_view(url='/workflow/', permanent=False)),
 ]
